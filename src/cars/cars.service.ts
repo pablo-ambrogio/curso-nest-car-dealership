@@ -7,21 +7,11 @@ import { UpdateCarDto, CreateCarDto } from './dto/index.js';
 export class CarsService {
 
     private cars: Car[] = [
-        {
-            id: uuid(),
-            brand: 'Toyota',
-            model: 'Corolla',
-        },
-        {
-            id: uuid(),
-            brand: 'Honda',
-            model: 'Civic'
-        },
-        {
-            id: uuid(),
-            brand: 'Peugeot',
-            model: '208'
-        }
+        // {
+        //     id: uuid(),
+        //     brand: 'Toyota',
+        //     model: 'Corolla',
+        // }
     ];
     
     findAll() {
@@ -66,18 +56,11 @@ export class CarsService {
     }
 
     delete( id: string ) {
-        const car = this.findOneById(id);
+        return this.cars.filter(car => car.id !== id);
+    }
 
-        this.cars.map((car, index) => {
-
-            if(car.id === id){
-                this.cars.splice(index, 1);
-            }
-
-            return this.cars;
-        })
-        
-        return 'Car deleted';
+    fillCarsWithSeedDate( cars: Car[] ) {
+        this.cars = cars;
     }
 
 }
